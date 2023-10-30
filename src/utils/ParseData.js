@@ -67,9 +67,8 @@ export const ParseData = async (items) => {
         });
       }
     });
-     
-    return parseData;
 
+    return parseData;
   } catch (error) {
     console.log(error);
   }

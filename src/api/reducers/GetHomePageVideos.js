@@ -20,9 +20,7 @@ export const HomePageVideos = createAsyncThunk(
     const items = response.data.items;
 
     const parsedData = await ParseData(items);
-    return {
-      parsedData: [...videos, ...parsedData],
-      nextPageToken: nextPageTokenFromState,
-    };
+    // console.log(parsedData , nextPageTokenFromState);
+    return {parsedData : { ...videos ,...parsedData, nextPageToken : nextPageTokenFromState}}
   }
 );

@@ -3,13 +3,14 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import { useAppDispatch, useAppSelector } from "../hooks/useApp";
 import { HomePageVideos } from "../api/reducers/GetHomePageVideos";
+import Spinner from "../components/Spinner";
 
 const Home = () => {
 
   const dispatch = useAppDispatch()
   const data = useAppSelector(state => state.youtubeApp.videos);
 
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
         dispatch(HomePageVideos(false))
@@ -24,7 +25,14 @@ const Home = () => {
         <Navbar />
       </div>
       <div className=" flex h-[92.5vh]">
-        <Sidebar />
+        
+        <Sidebar  />
+
+        <div className="flex w-[100%] justify-center items-center">
+          <Spinner />
+        </div>
+       
+      
       </div>
     </div>
   );
