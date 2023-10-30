@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import {ParseData} from "../../utils/ParseData";
+import { ParseData } from "../../utils/ParseData";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -13,13 +13,16 @@ export const HomePageVideos = createAsyncThunk(
       youtubeApp: { nextPageToken: nextPageTokenFromState, videos },
     } = getState();
 
-    const { data : { items, nextPageToken}, } = await axios.get(
+    const response = await axios.get(
       `${BASE_URL}/search?maxResults=20&q=%22%22&key=${API_KEY}&part=snippet&type=video`
     );
-    console.log(items, nextPageToken);
 
-    const parseData = await ParseData(items)
+    const items = response.data.items;
+
+    const parsedData = await ParseData(items);
+    return {
+      parsedData: [...videos, ...parsedData],
+      nextPageToken: nextPageTokenFromState,
+    };
   }
 );
-
-// https://youtube.googleapis.com/youtube/v3/search?maxResults=20&q=%22%22&key=AIzaSyCMx0dVZqePsVcmO4sS_iQpkEyOmvc9gmc&part=snippet&type=video

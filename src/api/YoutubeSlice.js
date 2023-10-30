@@ -20,7 +20,8 @@ const YoutubeSlice = createSlice({
       },
       extraReducers : (builder) => {
          builder.addCase(HomePageVideos.fulfilled, (state , action) => {
-            //  state.videos = action.payload.items;
+              state.videos = action.payload.parsedData
+              state.nextPageToken = action.payload.nextPageToken
          })
       }
 })
