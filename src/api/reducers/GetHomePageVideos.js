@@ -14,7 +14,7 @@ export const HomePageVideos = createAsyncThunk(
     } = getState();
 
     const response = await axios.get(
-      `${BASE_URL}/search?maxResults=20&q="typescript"&key=${API_KEY}&part=snippet&type=video&${
+      `${BASE_URL}/search?maxResults=20&q="stocks"&key=${API_KEY}&part=snippet&type=video&${
         isNext ? `pageToken=${nextPageTokenFromState}` : ""
       }`
     );

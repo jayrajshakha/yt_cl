@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export default function Card({data}) {
   return (
-    <div className='w-64 h-60 flex gap-3 flex-col'>
+    <div className='w-64 h-60 m-2 rounded-md flex gap-3 flex-col'>
       <div className='relative'>
             <span className='absolute bottom-3 right-3 text-sm bg-gray-900 px-2 py-0.5 z-10'>
                 {data.videoDuration}

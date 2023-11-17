@@ -7,10 +7,29 @@ import {
 } from "react-icons/ai";
 import { MdKeyboardVoice } from "react-icons/md";
 import {} from "react-icons/";
-
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../hooks/useApp";
+import { clear } from "../api/YoutubeSlice";
 
 const Navbar = () => {
+
+
+  const location = useLocation()
+  const nevigation = useNavigate()
+  const dispatch = useAppDispatch()
+  const searchTerm = useAppSelector(state => state.youtubeApp.searchTerm) 
+
+  console.log(location);
+
+  const handlerChange = () => {
+     if (location.pathname !== '/search') nevigation('/search')
+     else {
+         dispatch(clear)  
+    }
+  }
+  
+
+
   return (
     <div className=" flex justify-between items-center h-14 px-16">
       <div className=" flex items-center justify-between">
@@ -25,7 +44,11 @@ const Navbar = () => {
       <div className="flex items-center w-[732px] h-10">
         <div className="flex mx-auto  mt-2 ml-8 w-[640px] pr-1  pl-4 h-10">
           <form
-            action=""
+          onSubmit={ (e) => {
+             e.preventDefault()
+             handlerChange()
+          }}
+            action="" 
             className="pt-0.5 border  mx-2 rounded-xl  w-[536px] "
           >
             <input
